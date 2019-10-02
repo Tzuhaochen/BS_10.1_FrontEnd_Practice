@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="Day2_Pracitce2.css">
+  <script>
+    // flag = 0;
+    var flag = "";
+    function Setpoint(obj) {
+      if (obj.innerText != "_") return;
+      if (flag == "O") {
+        obj.innerText = "X";
+        flag = "X";
+      }
+      else {
+        obj.innerText = "O";
+        flag = "O";
+      }
+      Win();
+    }
+
+    function Win() {
+      var array = [s1.innerText, s2.innerText, s3.innerText, s4.innerText, s5.innerText, s6.innerText, s7.innerText, s8.innerText, s9.innerText];
+      for (i = 0; i < 9; i++) {
+        // if ((i == 0 || i == 3 || i == 6)
+        //   && ((array[i] == array[i + 1] && array[i + 1] == array[i + 2])
+        //     || (array[i] == array[i + 3] && array[i + 3] == array[i + 6])
+        //     || (array[i] == array[i + 4] && array[i + 4] == array[i + 8]))) {
+        var temp1 = j + 1;
+        var temp2 = j + 2;
+        if (array[i] == array[i + 1] && array[i + 1] == array[i + 2])
+          if (array[i] == 'O') {
+            alert('O Win');
+            if ()
+
+          }
+      }
+    }
+    //}
+      // alert(obj);
+      // if (flag % 2 == 0) {
+      //   obj.innerText = 'O';
+      // }
+      // else if (flag % 2 == 1) {
+      //   obj.innerText = 'X';
+      // }
+      // flag++;
+    //}
+  </script>
+</head>
+
+<body>
+  <h1>OOXX</h1>
+  <table id="table1">
+    <tr>
+      <td id="s1" onclick="Setpoint(this)">_</td>
+      <td id="s2" onclick="Setpoint(this)">_</td>
+      <td id="s3" onclick="Setpoint(this)">_</td>
+    </tr>
+    <tr class="even">
+      <td id="s4" onclick="Setpoint(this)">_</td>
+      <td id="s5" onclick="Setpoint(this)">_</td>
+      <td id="s6" onclick="Setpoint(this)">_</td>
+    </tr>
+    <tr class="odd">
+      <td id="s7" onclick="Setpoint(this)">_</td>
+      <td id="s8" onclick="Setpoint(this)">_</td>
+      <td id="s9" onclick="Setpoint(this)">_</td>
+      <!-- <td id="s9" onclick="Setpoint(document.getElementById('s9'))">_</td> 舊的 -->
+    </tr>
+  </table>
+  </div>
+
+</body>
+
+</html>
