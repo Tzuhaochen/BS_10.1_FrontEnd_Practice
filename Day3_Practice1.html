@@ -7,10 +7,38 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="Day3_Practice1.css">
   <title>Document</title>
+  <script>
+    //getElementById(抓取頁面上的元素)
+    function getElement(name) {
+      return document.getElementById(name);
+    }
+
+    //判斷是否可以送件
+    function Button_Submit() {
+      //抓取頁面上的checkboc1，取得是否checked
+      var isChecked = getElement('MustCheck').checked;
+      //如果是，就return true
+      if (isChecked) return true;
+      //否則就... 
+      alert('必須勾選同意!');
+      return false;
+    }
+
+    //當網頁載入完成後執行 //沒有名字的function //window整個視窗的物件.onload事件，被載入後執行下面的程式，為匿名委派的Function
+    window.onload = function () {
+      //hook event(在form1被submit時...)
+      //onsubmit 為按下button後
+      getElement('form1').onsubmit = function () {
+        //呼叫 Button_Submit()
+        return Button_Submit(); //Button_Submit的回傳Type是bool 因此如果
+      };
+    };
+  </script>
 </head>
 
 <body>
-  <form
+  <!-- 好處 不用把程式碼寫死在click裡面 -->
+  <form id="form1"
     action="http://isbaas.azurewebsites.net/WebForms/Form2Mail.aspx?mailto=chenhoward0401@gmail.com&redirect=http://www.google.com"
     method="post">
     <fieldset class="border-sytle">
@@ -58,5 +86,7 @@
     </fieldset>
     <input type="reset" value="重新填寫" />
     <button type="submit">送件</button>
+    <br /><br />
+    <input type="checkbox" name="MustCheck" id="MustCheck" />我已確認使用條款
   </form>
 </body>
