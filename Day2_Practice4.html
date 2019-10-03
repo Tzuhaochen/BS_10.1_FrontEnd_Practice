@@ -20,26 +20,51 @@
         obj.innerText = "O";
         flag = "O";
       }
+
       Win();
     }
 
-    function Win() {
-      var array = [s1.innerText, s2.innerText, s3.innerText, s4.innerText, s5.innerText, s6.innerText, s7.innerText, s8.innerText, s9.innerText];
-      for (i = 0; i < 9; i++) {
-        // if ((i == 0 || i == 3 || i == 6)
-        //   && ((array[i] == array[i + 1] && array[i + 1] == array[i + 2])
-        //     || (array[i] == array[i + 3] && array[i + 3] == array[i + 6])
-        //     || (array[i] == array[i + 4] && array[i + 4] == array[i + 8]))) {
-        var temp1 = j + 1;
-        var temp2 = j + 2;
-        if (array[i] == array[i + 1] && array[i + 1] == array[i + 2])
-          if (array[i] == 'O') {
-            alert('O Win');
-            if ()
-
-          }
-      }
-    }
+    // function Win() {
+    //   var array = [[s1.innerText, s2.innerText, s3.innerText], [s4.innerText, s5.innerText, s6.innerText], [s7.innerText, s8.innerText, s9.innerText]];
+    var array2 = [s1.innerText, s2.innerText, s3.innerText, s4.innerText, s5.innerText, s6.innerText, s7.innerText, s8.innerText, s9.innerText];
+    //   if
+    //   for (i = 0; i < 3; i++) {
+    //     for (j = 0; j < 3; j++) {
+    //       if (array[i][j] == array[i][j + 1] && array[i][j + 1] == array[i][j + 2]) {
+    //         if (array[i][j] == 'O')
+    //           alert('O Win');
+    //         else
+    //           alert('X Win');
+    //       }
+    //     }
+    //   }
+    // }
+      // for (i = 0; i < 9; i++) {
+      //   if ((i == 0 || i == 3 || i == 6)
+      //     && ((array[i] == array[i + 1] && array[i + 1] == array[i + 2])
+      //       || (array[i] == array[i + 3] && array[i + 3] == array[i + 6])
+      //       || (array[i] == array[i + 4] && array[i + 4] == array[i + 8]))) {
+      //     if ((i == 0 || i == 3 || i == 6) && array[i] == array[i + 1] && array[i + 1] == array[i + 2]) {
+      //       if (array[i] == 'O')
+      //         alert('O Win');
+      //       else
+      //         alert('X Win');
+      //     }
+      //     else if (array[i] == array[i + 3] && array[i + 3] == array[i + 6]) {
+      //       if (array[i] == 'O')
+      //         alert('O Win');
+      //       else
+      //         alert('O Win');
+      //     }
+      //     else if (array[i - 4] == array[i] && array[i] == array[i + 4]) {
+      //       if (array[i] == 'O')
+      //         alert('O Win');
+      //       else
+      //         alert('O Win');
+      //     }
+      //   }
+      // }
+    //}
     //}
       // alert(obj);
       // if (flag % 2 == 0) {

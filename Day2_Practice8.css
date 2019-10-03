@@ -1,0 +1,8 @@
+.banner {
+  
+  background-color: red;
+}
+.banner p{
+float: left;
+margin-left: 20px;
+}

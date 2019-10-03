@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="Day3_Practice1.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <form
+    action="http://isbaas.azurewebsites.net/WebForms/Form2Mail.aspx?mailto=chenhoward0401@gmail.com&redirect=http://www.google.com"
+    method="post">
+    <fieldset class="border-sytle">
+      <legend>個人資料填寫 ─ 必填</legend>
+      <p>姓名：
+        <input type="text" placeholde="請輸入姓名" value="" name="fieldName" id="fieldName" maxlength="30">
+      </p>
+      <p>密碼：
+        <input type="password" name="fieldPassward" id="fieldPassward" maxlength="30">
+      </p>
+      <p>性別：
+        <input type="radio" name="fieldGender" id="male">男生
+        <input type="radio" name="fieldGender" id="female">女生
+      </p>
+    </fieldset>
+    <fieldset class="border-sytle">
+      <legend>個人資料填寫 ─ 興趣</legend>
+      <p>興趣：
+        <input type="checkbox" name="fieldMusic" id="music">音樂
+        <input type="checkbox" name="fieldSport" id="sport">運動
+        <input type="checkbox" name="fieldRead" id="Read">閱讀
+        <input type="checkbox" name="fieldMovie" id="Movie">電影
+      </p>
+      專長：
+      <textarea row="100" cols="40" id="comments">
+
+      </textarea>
+
+    </fieldset>
+    <fieldset class=" border-sytle">
+      <legend>個人資料填寫 ─ 地址</legend>
+      <p>郵遞區號：
+        <input type="text" name="zipCode" id="zipCode">
+      </p>
+      <p>縣市：
+        <select name="city">
+          <option value="1">Taipei</option>
+          <option value="2" selected>Hsinchu</option>
+          <option value="3">Kaohsiung</option>
+        </select>
+      </p>
+      <p>其他地址：
+        <input type="text" name="address" id="address">
+      </p>
+    </fieldset>
+    <input type="reset" value="重新填寫" />
+    <button type="submit">送件</button>
+  </form>
+</body>

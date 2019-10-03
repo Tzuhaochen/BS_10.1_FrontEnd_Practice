@@ -1,0 +1,50 @@
+#test {
+  line-height: 1.5em;
+}
+#No {
+  width: 40%;
+  padding: 0 20% 0 30%;
+}
+#float-practice li {
+  float: left;
+  margin-left: 30px;
+}
+
+#add-item li {
+  list-style-image: url('https://img.icons8.com/android/24/000000/small-axe.png');
+}
+
+
+#initial-rectangle {
+  margin:10px;
+  border-width: 3px;
+  border-color: blue;
+  border-style: dotted;
+
+  border-left: 3px;
+  border-left: 2px dotted;
+  border-left: medium dashed green;
+} 
+
+#initial-rectangle2 {
+  margin:10px;
+  border-width: 3px;
+  border-color: blue;
+  border-style: dotted;
+  border-radius:5px 10px 15px 20px;
+
+  border-left: 3px;
+  border-left: 2px dotted;
+  border-left: medium dashed green;
+} 
+
+#float-image {
+  float: right;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+#scroll-practice {
+  overflow: scroll;
+  height: 200px;
+}
