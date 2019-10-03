@@ -1,0 +1,15 @@
+#table1 {
+  text-align: center;
+  width: 800px;
+  height: 200px;
+  border: 2px solid lightgreen;
+}
+
+#table1 .even {
+  background-color: lightyellow;
+}
+
+#table1 .odd {
+  background-color: lightcyan;
+}
+/*# sourceMappingURL=Day2_Pracitce3.css.map */

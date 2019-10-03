@@ -1,14 +1,12 @@
 #table1 {
+  .even {
+    background-color: lightyellow;  
+  }
+  .odd {
+    background-color: lightcyan;
+  }
   text-align: center;
   width: 800px;
   height: 200px;
   border: 2px solid lightgreen;
-}
-
-
-tr.odd {
-  background-color: lightcyan;
-}
-tr.even {
-  background-color: lightyellow;
 }
