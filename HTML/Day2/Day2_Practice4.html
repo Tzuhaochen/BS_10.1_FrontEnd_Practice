@@ -7,6 +7,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="../../CSS/Day2/Day2_Practice2.css">
+  <script type="text/javascript"
+    src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js"
+    charset="UTF-8"></script>
   <script>
     // flag = 0;
     var flag = "";
@@ -20,61 +23,30 @@
         obj.innerText = "O";
         flag = "O";
       }
-
-      Win();
+      Win(obj);
     }
-
-    // function Win() {
-    //   var array = [[s1.innerText, s2.innerText, s3.innerText], [s4.innerText, s5.innerText, s6.innerText], [s7.innerText, s8.innerText, s9.innerText]];
-    var array2 = [s1.innerText, s2.innerText, s3.innerText, s4.innerText, s5.innerText, s6.innerText, s7.innerText, s8.innerText, s9.innerText];
-    //   if
-    //   for (i = 0; i < 3; i++) {
-    //     for (j = 0; j < 3; j++) {
-    //       if (array[i][j] == array[i][j + 1] && array[i][j + 1] == array[i][j + 2]) {
-    //         if (array[i][j] == 'O')
-    //           alert('O Win');
-    //         else
-    //           alert('X Win');
-    //       }
-    //     }
-    //   }
-    // }
-      // for (i = 0; i < 9; i++) {
-      //   if ((i == 0 || i == 3 || i == 6)
-      //     && ((array[i] == array[i + 1] && array[i + 1] == array[i + 2])
-      //       || (array[i] == array[i + 3] && array[i + 3] == array[i + 6])
-      //       || (array[i] == array[i + 4] && array[i + 4] == array[i + 8]))) {
-      //     if ((i == 0 || i == 3 || i == 6) && array[i] == array[i + 1] && array[i + 1] == array[i + 2]) {
-      //       if (array[i] == 'O')
-      //         alert('O Win');
-      //       else
-      //         alert('X Win');
-      //     }
-      //     else if (array[i] == array[i + 3] && array[i + 3] == array[i + 6]) {
-      //       if (array[i] == 'O')
-      //         alert('O Win');
-      //       else
-      //         alert('O Win');
-      //     }
-      //     else if (array[i - 4] == array[i] && array[i] == array[i + 4]) {
-      //       if (array[i] == 'O')
-      //         alert('O Win');
-      //       else
-      //         alert('O Win');
-      //     }
-      //   }
-      // }
-    //}
-    //}
-      // alert(obj);
-      // if (flag % 2 == 0) {
-      //   obj.innerText = 'O';
-      // }
-      // else if (flag % 2 == 1) {
-      //   obj.innerText = 'X';
-      // }
-      // flag++;
-    //}
+    function Win(obj) {
+      var input = obj.innerText;
+      var checklist = obj.className.split(" ");
+      //console.log(checklist);
+      for (i = 0; i < checklist.length; i++) {
+        if (CheckResult(checklist[i], input) == true) {
+          var output = String(input);
+          alert(output + "  Win");
+        }
+      }
+    }
+    // function CheckResult(id, input) { Can't use id because each element has only one id.
+    // Uncaught TypeError: Cannot convert undefined or null to object
+    function CheckResult(className, input) {
+      var check = null;
+      check = Array.prototype.slice
+        .call(document.getElementsByClassName(className))
+        .every(function (item) {
+          return item.innerText == input;
+        });
+      return check;
+    }
   </script>
 </head>
 
@@ -82,19 +54,20 @@
   <h1>OOXX</h1>
   <table id="table1">
     <tr>
-      <td id="s1" onclick="Setpoint(this)">_</td>
-      <td id="s2" onclick="Setpoint(this)">_</td>
-      <td id="s3" onclick="Setpoint(this)">_</td>
+      <td class="row1 col1 left" onclick="Setpoint(this)">_</td>
+      <td class="row1 col2" onclick="Setpoint(this)">_</td>
+      <td class="row1 col3 right" onclick="Setpoint(this)">_</td>
     </tr>
     <tr class="even">
-      <td id="s4" onclick="Setpoint(this)">_</td>
-      <td id="s5" onclick="Setpoint(this)">_</td>
-      <td id="s6" onclick="Setpoint(this)">_</td>
+      <td class="row2 col1" onclick="Setpoint(this)">_</td>
+      <td class="row2 col2 left right" onclick="Setpoint(this)">_</td>
+      <td class="row2 col3" onclick="Setpoint(this)">_</td>
     </tr>
     <tr class="odd">
-      <td id="s7" onclick="Setpoint(this)">_</td>
-      <td id="s8" onclick="Setpoint(this)">_</td>
-      <td id="s9" onclick="Setpoint(this)">_</td>
+      <!-- id is the mirror of first row -->
+      <td class="row3 col1 right" onclick="Setpoint(this)">_</td>
+      <td class="row3 col2" onclick="Setpoint(this)">_</td>
+      <td class="row3 col3 left" onclick="Setpoint(this)">_</td>
       <!-- <td id="s9" onclick="Setpoint(document.getElementById('s9'))">_</td> 舊的 -->
     </tr>
   </table>
