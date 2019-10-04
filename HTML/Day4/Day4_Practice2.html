@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Document</title>
+  <script>
+    function getValue(id) {
+      return document.getElementById(id).value;
+    }
+    function GetBmi(height, weight) {
+      let bmi = 0;
+      H = height / 100;
+      bmi = weight / (H * H);
+      return bmi;
+    }
+    function Show(msg) {
+      document.getElementById('label1').innerHTML += msg;//+ "<br/>";
+    }
+    function Button_Click() {
+      let height = getValue("personHeight");
+      let weight = getValue("personWeight");
+      let result = GetBmi(height, weight);
+      Show(result);
+      // //未定義、布林、與數值
+      // var x, y = true, z = 0;
+      // //字串
+      // var str1 = "", str2 = "David";
+      // //數值
+      // var height = 170, weight = 70;
+      // var n = "100" + 30 + 20;
+      // //重複定義
+      // var carName = "BMW";
+      // var carName = "Benz";
+
+      // //顯示
+      // Show('x --> ' + x);
+      // Show('y --> ' + y);
+      // Show('z --> ' + z++);
+      // Show('z --> ' + z);
+
+      // Show('x+z --> ' + x + z);
+      // Show('y+str2  --> ' + y + str2);
+      // Show('x+str2  --> ' + x + str2);
+      // Show('z+str2  --> ' + z + str2);
+      // Show('n  --> ' + n);
+      // Show('carName  --> ' + carName);
+
+      // bmi = 3;
+      // //bmi
+      // Show("BMI --> " + GetBmi(height, weight));
+      // Show("H  --> " + H);
+
+      // for (let index = 0; index < bmi; index++) {
+      //   // let bmi2 = 0;
+      //   // const bmi2 = 0;
+      //   var bmi2 = 0;
+      //   bmi2 += bmi;
+      //   Show("bmi2  --> " + bmi);
+      // }
+      // Show("bmi  --> " + bmi);
+      // Show("bmi2  --> " + bmi2);
+      // alert('done!');
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        身高：<input type="text" class="form-control" placeholder="請輸入身高" value="" id="personHeight" name="personHeight">
+        體重：<input type="text" class="form-control" placeholder="請輸入體重" value="" id="personWeight" name="personWeight">
+        <br />
+        結果：<label id="label1"></label><br />
+        <button class="btn btn-info" onclick="Button_Click()" type="submit">計算</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

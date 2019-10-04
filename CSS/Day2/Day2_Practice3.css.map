@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "AAAA,AAAA,OAAO,CAAC;EAON,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,MAAM,EAAE,oBAAoB;CAC7B;;AAXD,AACE,OADK,CACL,KAAK,CAAC;EACJ,gBAAgB,EAAE,WAAW;CAC9B;;AAHH,AAIE,OAJK,CAIL,IAAI,CAAC;EACH,gBAAgB,EAAE,SAAS;CAC5B",
     "sources": [
-        "Day2_Pracitce3.scss"
+        "Day2_Practice3.scss"
     ],
     "names": [],
-    "file": "Day2_Pracitce3.css"
+    "file": "Day2_Practice3.css"
 }
