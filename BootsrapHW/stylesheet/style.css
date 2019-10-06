@@ -1,5 +1,5 @@
 body {
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
 }
 
 img {
@@ -106,7 +106,7 @@ nav {
 }
 
 .feature-content p {
-  color: #7b8b9A;
+  color: #7b8b9a;
 }
 
 .items {
@@ -137,7 +137,7 @@ nav {
   border: 1px solid #dfdfdf;
 }
 
-.item > div:hove r {
+.item > div:hover {
   -webkit-box-shadow: 0 2px 12px 2px #99a6b14a;
           box-shadow: 0 2px 12px 2px #99a6b14a;
 }
@@ -153,7 +153,7 @@ nav {
   margin: 8px 0;
   font-size: 18px;
   line-height: 1.2;
-  color: #7d8b9A;
+  color: #7d8b9a;
 }
 
 .item .item-footer {
@@ -200,7 +200,7 @@ nav {
 }
 
 .join {
-  color: #7d8b9A;
+  color: #7d8b9a;
   background-color: #f5f5f5;
   padding: 110px 0;
   text-align: center;
