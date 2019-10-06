@@ -1,0 +1,100 @@
+* {
+  font-family: "Noto Sans TC", sans-serif;
+}
+.jumbotron-first {
+  background-color: #fff !important;
+  position: relative;
+}
+.h2-space {
+  padding: 0% 25% 0 25%;
+}
+.upper-space {
+  padding: 20% 40% 2% 40%;
+}
+
+#start-code {
+  text-align: center;
+  padding: 10% 25% 2% 20%;
+}
+
+.btn {
+  text-align: center;
+  background-color: rgb(130, 33, 221) !important;
+  color: white !important;
+}
+
+.top-size {
+  margin: 5% 0 5% 0;
+}
+.card {
+  border: 2px solid grey !important;
+}
+
+.card-title {
+  color: grey;
+}
+.card-text {
+  color: black;
+}
+.card-footer {
+  background-color: #fff !important;
+  text-decoration: none;
+}
+
+.container1 .container2 {
+  height: 0px;
+  padding-bottom: 100%;
+}
+
+.background-purple {
+  margin: 5% 0 0 0;
+  background-color: rgb(88, 110, 235);
+}
+
+.background-grey {
+  height: 100%;
+  background-color: rgb(240, 240, 240);
+}
+
+.img-padding {
+  padding: 15% 0 0 0;
+}
+
+.project-describe {
+  color: white;
+  padding: 3% 10% 0% 10%;
+}
+
+.describe-b {
+  font-size: 80%;
+  color: #fff;
+  padding: 0 0 10% 10%;
+}
+
+.join-style {
+  padding: 15% 0 2% 0;
+}
+
+.welcome {
+  font-size: 120%;
+}
+
+.input-format {
+  padding: 0 30% 0 30%;
+}
+
+.btn-extend-margin {
+  margin: 0 0 30% 0;
+}
+
+footer {
+  margin: 1% 0 3% 0;
+}
+
+.footer-margin {
+  margin: 1% 0 0 0;
+}
+
+.footer > a {
+  color: black;
+}
