@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    * {
+      font-family: "Noto Sans TC", sans-serif;
+    }
+
+    .card {
+      margin-top: 30px;
+    }
+
+    .card-header {
+      color: aliceblue;
+    }
+  </style>
+  <script>
+
+    //判斷是否可以送件
+    // function Button_Submit() {
+    //   //抓取頁面上的checkboc1，取得是否checked
+    //   var isChecked = document.getElementById("MustCheck").checked;
+    //   //如果是，就return true
+    //   if (isChecked) {
+    //     document.getElementById("modal-Body").innerHTML = "成功登入";
+    //     $('#myModal').modal();
+    //   }
+    //   //否則就... 
+    //   else {
+    //     document.getElementById("modal-Body").innerHTML = "請勾選使用條款";
+    //     $('#myModal').modal();
+    //   }
+    // }
+  </script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card ">
+          <div class="card-header bg-primary">登入系統</div>
+          <div class="card-body">
+            <div class="text-right" col="col-md-12">
+              <a href="D5_Practice1_2.html"
+                class="btn btn-danger col-md-4 justify-content-center justify-content-center">註冊新帳號</a>
+            </div>
+            <p>帳號
+              <input type="text" class="form-control" col="col-md-8" placeholder="請輸入帳號名" value name="fieldAccount"
+                id="fieldAccount" maxlength="30">
+            </p>
+            <p>密碼
+              <input type="text" class="form-control" col="col-md-8" placeholder="請輸入密碼" value name="fieldPassward"
+                id="fieldPassward" max="30">
+            </p>
+
+          </div>
+          <p>
+            <input class type="checkbox" name="mustCheck" id="MustCheck">我已確認<a href="">使用條款</a>
+          </p>
+          <!-- <button id="loginButton" class="btn btn-primary" col="col-md-6" onclick="Button_Submit()">登入</button> -->
+          <button id="loginButton" class="btn btn-primary" col="col-md-6" data-toggle="modal"
+            data-target="#messageModal">登入</button>
+
+          <!-- data-toggle="modal" data-target="#myModal" -->
+        </div>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade show" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body" id="modal-Body">
+            Modal body..
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $("#loginButton").click(function () {
+        //alert(!$("#MustCheck").prop("checked"));
+        if (!$("#MustCheck").prop("checked")) {
+          $(".modal-body").text("請勾選使用條款");
+        }
+      });
+    </script>
+</body>
+
+</html>
