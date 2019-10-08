@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <!-- Swiper v4.1.0 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/js/swiper.js"></script>
+
+
+  <!-- bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <title>信義房屋</title>
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    .carousel .carousel-item img {
+      object-fit: fill;
+    }
+
+    /* swiper */
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Center slide text vertically */
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-sm bg-white">
+    <div class="col-md-2"></div>
+    <div class="col-xs-1">
+      <img src="https://fakeimg.pl/120x20/?text=信義房屋&font=noto" alt="">
+    </div>
+    <div class="col-md-5">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">買屋</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">賣屋</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">租屋</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">社區</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">實價登錄</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">房訊知識</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">居家生活</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-3">
+      <ul class="navbar-nav">
+        <li class="nav-item"><img src="https://fakeimg.pl/20x20/?text=月薪五萬&font=noto" alt=""></li>
+        <li class="nav-item">
+          <a href="" class="nav-link">人才招募</a>
+        </li>
+        <li class="nav-item">
+          <div id="adjust-nav-button">
+            <button class="btn">登入/註冊</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class=" col-sm-2"></div>
+  </nav>
+
+  <div class="swiper-container">
+    <div class="swiper-wrapper swiper1">
+      <div class="swiper-slide">
+        <a href="" class="href"><img src="https://fakeimg.pl/1800x500/?text=信義房屋1&font=noto" class="img-fluid"
+            alt="Responsive image">
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="" class="href"><img src="https://fakeimg.pl/1800x500/?text=信義房屋2&font=noto" class="img-fluid"
+            alt="Responsive image">
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="" class="href"><img src="https://fakeimg.pl/1800x500/?text=信義房屋3&font=noto" class="img-fluid"
+            alt="Responsive image">
+        </a>
+      </div>
+    </div>
+
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <!-- carousel slide ver1 -->
+  <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="500">
+    <ul class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="" class="href"><img src="https://fakeimg.pl/1800x500/?text=信義房屋1&font=noto" class="img-fluid"
+            alt="Responsive image">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="" class="href"><img src="https://fakeimg.pl/1800x500/?text=信義房屋2&font=noto" class="img-fluid"
+            alt="Responsive image"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="" class="href"><img src="https://fakeimg.pl/1800x500/?text=信義房屋3&font=noto" class="img-fluid"
+            alt="Responsive image"></a>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div> -->
+  <!-- Initialize Swiper -->
+  <script>
+
+
+    var swiper = new Swiper('.swiper-container', {
+      loop: true,
+      spaceBetween: 200,
+      centeredSlides: true,
+      autoplay: {
+        delay: 3000,
+      },
+      effect: 'coverflow',
+      slidesPerView: 1,
+      centeredSlides: true,
+      coverflowEffect: {
+        rotate: 30,
+        stretch: 10,
+        depth: 60,
+        modifier: 2,
+        slideShadows: true
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      grabCursor: true,
+    });
+  </script>
+  <!-- slide ver 2 -->
+  <!-- <script>
+    $(document).ready(function () {
+      // Activate Carousel with a specified interval
+      $("#myCarousel").carousel({ interval: 500 });
+
+      // Enable Carousel Indicators
+      $(".item1").click(function () {
+        $("#myCarousel").carousel(0);
+      });
+      $(".item2").click(function () {
+        $("#myCarousel").carousel(1);
+      });
+      $(".item3").click(function () {
+        $("#myCarousel").carousel(2);
+      });
+
+      // Enable Carousel Controls
+      $(".carousel-control-prev").click(function () {
+        $("#myCarousel").carousel("prev");
+      });
+      $(".carousel-control-next").click(function () {
+        $("#myCarousel").carousel("next");
+      });
+    });
+  </script> -->
+</body>
+
+</html>
