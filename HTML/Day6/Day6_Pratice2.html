@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <style>
+    .btn {
+      width: 4%;
+    }
+  </style>
+  <script>
+    var text = "";
+    function Button_Click(_this) {
+      console.log(_this.innerText);
+      let value = _this.innerText
+      $('#inputScreen').val($('#inputScreen').val() + value)
+
+    }
+    $(document).ready(function () {
+      $("#buttons p button").click(function () {
+        Button_Click(this)
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row" style="margin-top: 50px ">
+      <div class="col-md-3"></div>
+      <div id="buttons" class="col-md-6">
+        <p>
+          <input id="inputScreen" class="form-control" style="width: 180px" />
+        </p>
+        <p>
+          <button type="button" class="tbn btn-light rounded-circle" style="width:40px;height:40px;">AC</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">(</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">)</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">/</button>
+        </p>
+        <p>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">7</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">8</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">9</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">*</button>
+        </p>
+        <p>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">4</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">5</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">6</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">-</button>
+        </p>
+        <p>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">1</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">2</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">3</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">+</button>
+        </p>
+        <p>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">0</button>
+          <button type="button" class="btn btn-light rounded-circle" style="width:40px;height:40px;">.</button>
+          <button type="button" class="btn btn-light rounded" style="width:90px;height:40px;">=</button>
+        </p>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</body>
+
+</html>

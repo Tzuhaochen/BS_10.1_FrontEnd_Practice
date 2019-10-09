@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Document</title>
+  <script>
+    // function getValue(id) {
+    //   // return document.getElementById(id).value;
+    //   return $(id).val();
+    // }
+    // function GetBmi(height, weight) {
+    //   let bmi = 0;
+    //   H = height / 100;
+    //   bmi = weight / (H * H);
+    //   return bmi;
+    // }
+
+    var BmiObj = {
+      height: 0,
+      weight: 0,
+      GetBmi: function () {
+        let bmi = 0;
+        H = this.height / 100;
+        bmi = this.weight / (H * H);
+        return bmi;
+      }
+    }
+    function Show(msg) {
+      // document.getElementById('label1').innerHTML += msg;//+ "<br/>";
+      $("#label1").html($("#label1").html() + msg + "<br/>");
+    }
+    function Button_Click() {
+      BmiObj.height = $("#personHeight").val();
+      // let weight = getValue("personWeight");
+      BmiObj.weight = $("#personWeight").val();
+      let result = BmiObj.GetBmi();
+      Show(result);
+    }
+    $(document).ready(function () {
+      $("#click").click(Button_Click);
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        身高：<input type="text" class="form-control" placeholder="請輸入身高" value="" id="personHeight" name="personHeight">
+        體重：<input type="text" class="form-control" placeholder="請輸入體重" value="" id="personWeight" name="personWeight">
+        <br />
+        結果：<label id="label1"></label><br />
+        <button class="btn btn-info" type="submit" id="click">計算</button>
+        <!-- <button class="btn btn-info" type="submit">計算</button> -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

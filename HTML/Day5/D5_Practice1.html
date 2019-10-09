@@ -26,20 +26,20 @@
   <script>
 
     //判斷是否可以送件
-    // function Button_Submit() {
-    //   //抓取頁面上的checkboc1，取得是否checked
-    //   var isChecked = document.getElementById("MustCheck").checked;
-    //   //如果是，就return true
-    //   if (isChecked) {
-    //     document.getElementById("modal-Body").innerHTML = "成功登入";
-    //     $('#myModal').modal();
-    //   }
-    //   //否則就... 
-    //   else {
-    //     document.getElementById("modal-Body").innerHTML = "請勾選使用條款";
-    //     $('#myModal').modal();
-    //   }
-    // }
+    function Button_Submit() {
+      //抓取頁面上的checkboc1，取得是否checked
+      var isChecked = document.getElementById("MustCheck").checked;
+      //如果是，就return true
+      if (isChecked) {
+        document.getElementById("modal-Body").innerHTML = "成功登入";
+        $('#myModal').modal();
+      }
+      //否則就... 
+      else {
+        document.getElementById("modal-Body").innerHTML = "請勾選使用條款";
+        $('#myModal').modal();
+      }
+    }
   </script>
 </head>
 
@@ -68,9 +68,9 @@
           <p>
             <input class type="checkbox" name="mustCheck" id="MustCheck">我已確認<a href="">使用條款</a>
           </p>
-          <!-- <button id="loginButton" class="btn btn-primary" col="col-md-6" onclick="Button_Submit()">登入</button> -->
-          <button id="loginButton" class="btn btn-primary" col="col-md-6" data-toggle="modal"
-            data-target="#messageModal">登入</button>
+          <button id="loginButton" class="btn btn-primary" col="col-md-6" onclick="Button_Submit()">登入</button>
+          <!-- <button id="loginButton" class="btn btn-primary" col="col-md-6" data-toggle="modal"
+            data-target="#messageModal">登入</button> -->
 
           <!-- data-toggle="modal" data-target="#myModal" -->
         </div>
@@ -100,14 +100,14 @@
         </div>
       </div>
     </div>
-    <script>
+    <!-- <script>
       $("#loginButton").click(function () {
         //alert(!$("#MustCheck").prop("checked"));
         if (!$("#MustCheck").prop("checked")) {
           $(".modal-body").text("請勾選使用條款");
         }
       });
-    </script>
+    </script> -->
 </body>
 
 </html>
