@@ -27,6 +27,7 @@
       $('#ButtonStart').click(ButtonStart);
       $('#ButtonPause').click(ButtonPause);
       $('#ButtonContinue').click(ButtonContinue);
+      $('#ButtonExit').click(ButtonExit);
     });
 
     // let flag = true;
@@ -49,15 +50,16 @@
 
     // }
     /*------------------------------------------------*/
-    //沒物件待補
+    //沒物件版待補
     let count = 0;
+    //開始倒數
     function ShowClock() {
       if (flag == false) {
         return;
       }
       let countDownTime = $('#inputValue').val(); //document.getElementById("inputValue").innerText
       StateJudge(countDownTime);
-      if (count > 0) {
+      if (count > 0) { //如果還有可以倒數的秒數
         countDownTime = countDownTime - 1;
       }
       count++;
@@ -74,24 +76,43 @@
       }
       else if (countDownTime == 0) {
         alert('倒數結束');
-        ButtonPause();
+        toRestart();
       }
     }
+
     //var timeoutID = window.setInterval((() => console.log("Hello!")), 1000);
     function ButtonStart() {
       flag = true;
-      ShowClock();
-    }
-    function ButtonPause() {
-      flag = false;
-      count = 0;
-    }
-    function ButtonContinue() {
-      flag = true;
-      count = 0;
+      $('#ButtonStart').attr("disabled", true);
+      $('#ButtonContinue').attr("disabled", true);
       ShowClock();
     }
 
+    function ButtonPause() {
+      flag = false;
+      count = 0;
+      $('#ButtonContinue').attr("disabled", false);
+      $('#ButtonStart').attr("disabled", true);
+    }
+
+    function ButtonContinue() {
+      flag = true;
+      count = 0;
+      $('#ButtonContinue').attr("disabled", true);
+      ShowClock();
+    }
+
+    function ButtonExit() {
+      $('#inputValue').val(0)
+      toRestart();
+    }
+
+    function toRestart() {
+      ButtonPause();
+      $('#ButtonStart').attr("disabled", false);
+      $('#ButtonPause').attr("disabled", false);
+      $('#ButtonContinue').attr("disabled", false);
+    }
   </script>
 </head>
 
@@ -105,12 +126,13 @@
       <input type="button" class="btn btn-primary" id="ButtonStart" value="開始" />
       <input type="button" class="btn btn-primary" id="ButtonPause" value="暫停" />
       <input type="button" class="btn btn-primary" id="ButtonContinue" value="繼續" />
+      <input type="button" class="btn btn-primary" id="ButtonExit" value="重新輸入" />
     </div>
   </div>
 
 
   <!-- bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  <script src=" https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
