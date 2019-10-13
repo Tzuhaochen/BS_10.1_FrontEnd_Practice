@@ -29,21 +29,52 @@
       $('#ButtonContinue').click(ButtonContinue);
     });
 
-    let flag = true;
+    // let flag = true;
 
+    // var TimeObject = {
+    //   CountdownTimer: 0,
+    //   Countdown: function () {
+    //     switch (CountdownTimer) {
+    //       case 0:
+    //         return;
+    //       case (CountdownTimer >= 0):
+    //         return 返回的方法;
+    //       default:
+    //         return;
+    //     }
+    //   }
+    // }
 
-    function TimeStatus() {
+    // function TimeStatus() {
 
-    }
+    // }
+    /*------------------------------------------------*/
+    //沒物件待補
+    let count = 0;
     function ShowClock() {
       if (flag == false) {
         return;
       }
       let countDownTime = $('#inputValue').val(); //document.getElementById("inputValue").innerText
-      countDownTime = countDownTime - 1;
-      $('#inputValue').val(countDownTime + 1);
+      StateJudge(countDownTime);
+      if (count > 0) {
+        countDownTime = countDownTime - 1;
+      }
+      count++;
+      $('#inputValue').val(countDownTime);
       if (flag == true) {
         setTimeout(ShowClock, 1000);
+      }
+    }
+
+    function StateJudge(countDownTime) {
+      if (countDownTime < 0) {
+        alert('請輸入正確的數字');
+        ButtonPause();
+      }
+      else if (countDownTime == 0) {
+        alert('倒數結束');
+        ButtonPause();
       }
     }
     //var timeoutID = window.setInterval((() => console.log("Hello!")), 1000);
@@ -53,9 +84,11 @@
     }
     function ButtonPause() {
       flag = false;
+      count = 0;
     }
     function ButtonContinue() {
       flag = true;
+      count = 0;
       ShowClock();
     }
 
