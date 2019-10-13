@@ -46,11 +46,11 @@
         }
       );
 
-      $(sel01).change(function (e) { //jqChange
+      $('#sel01').change(function (e) { //jqChange
         var val = $(this).val();
         // $('#ImgGroup2 img').removeClass();
         // $('#ImgGroup2 img').addClass(val);
-        console.log(val);
+        // console.log(val);
         // var value = val + 'px'
         $('.img-responsive').css('border-radius', `${val}px`);
       });

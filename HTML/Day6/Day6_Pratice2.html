@@ -17,28 +17,32 @@
     }
   </style>
   <script>
-    var text = "";
-    function Button_Click(_this) {
-      console.log(_this.innerText);
-      let value = _this.innerText
-      $('#inputScreen').val($('#inputScreen').val() + value)
-
+    function Button_Click() {
+      switch (this.innerText) {
+        case "AC":
+          $('#inputScreen').val("  ");
+          break;
+        case "=":
+          $('#inputScreen').val(eval($('#inputScreen').val()));
+          break;
+        default:
+          $('#inputScreen').val($('#inputScreen').val() + this.innerText);
+          break;
+      }
     }
     $(document).ready(function () {
-      $("#buttons p button").click(function () {
-        Button_Click(this)
-      });
+      $("#buttons button").click(Button_Click);
     });
   </script>
 </head>
 
 <body>
   <div class="container">
-    <div class="row" style="margin-top: 50px ">
-      <div class="col-md-3"></div>
-      <div id="buttons" class="col-md-6">
+    <div class="row mt-5">
+      <div class="col-md-4"></div>
+      <div id="buttons" class="col-md-3">
         <p>
-          <input id="inputScreen" class="form-control" style="width: 180px" />
+          <input id="inputScreen" class="form-control col-md-9" />
         </p>
         <p>
           <button type="button" class="tbn btn-light rounded-circle" style="width:40px;height:40px;">AC</button>

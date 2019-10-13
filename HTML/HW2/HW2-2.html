@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- fontaweson -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+  <script>
+    $(document).ready(function () {
+      $('#ButtonStart').click(ButtonStart);
+      $('#ButtonPause').click(ButtonPause);
+      $('#ButtonContinue').click(ButtonContinue);
+    });
+
+    let flag = true;
+
+
+    function TimeStatus() {
+
+    }
+    function ShowClock() {
+      if (flag == false) {
+        return;
+      }
+      let countDownTime = $('#inputValue').val(); //document.getElementById("inputValue").innerText
+      countDownTime = countDownTime - 1;
+      $('#inputValue').val(countDownTime + 1);
+      if (flag == true) {
+        setTimeout(ShowClock, 1000);
+      }
+    }
+    //var timeoutID = window.setInterval((() => console.log("Hello!")), 1000);
+    function ButtonStart() {
+      flag = true;
+      ShowClock();
+    }
+    function ButtonPause() {
+      flag = false;
+    }
+    function ButtonContinue() {
+      flag = true;
+      ShowClock();
+    }
+
+  </script>
+</head>
+
+<body>
+  <div class="row d-flex justify-content-center">
+    <div class="col-8 text-center mt-5">
+      <label id="output">倒數計時器</label><br />
+      <input type="text" class="form-control col-4 d-inline-flex justify-content-center mb-2" id="inputValue"
+        placeholder="請輸入倒數的秒數">
+      <br />
+      <input type="button" class="btn btn-primary" id="ButtonStart" value="開始" />
+      <input type="button" class="btn btn-primary" id="ButtonPause" value="暫停" />
+      <input type="button" class="btn btn-primary" id="ButtonContinue" value="繼續" />
+    </div>
+  </div>
+
+
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
