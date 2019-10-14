@@ -35,42 +35,68 @@
       AjaxTrans('#rightShow');
       flag = false;
     }
+    function whenSuccess(response) {
+      switch ($('#language').val()) { //(response[0].translations[0].text);
+        case "0":
+          outputText = response[0].translations[0].text;
+          break;
+        case "1":
+          outputText = response[0].translations[1].text;
+          break;
+        case "2":
+          outputText = response[0].translations[2].text;
+          break;
+        case "3":
+          outputText = response[0].translations[3].text;
+          break;
+        default:
+          return;
+      }
+      if (flag == true) {
+        $('#rightShow').val(outputText);
+      }
+      else {
+        $('#leftShow').val(outputText);
+      }
+    }
     function AjaxTrans(id) {
-      $.ajax({
+      $.ajax({  //物件當成參數來傳
         type: "post", //http verb
         headers: {
           //http header
           "Ocp-Apim-Subscription-Key": "4a6704f780c14d32948b65e44c594b8a",//"換成你自己申請到的key",
           "Content-Type": "application/json"
-        },
+        },                                                            //?api-後面的都是參數
         url: "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en&to=zh-Hant&to=ja&to=ko",
-        data: JSON.stringify([{ "Text": $(id).val() }]), //要翻譯的文字
+        data: JSON.stringify([{ "Text": $(id).val() }]),
+        //要翻譯的文字 擁有Text屬性的物件的陣列 JSON是靜態類別的方法(function)
         dataType: "json",
-        success: function (response) {
-          //呼叫遠端服務後的回傳結果
-          switch ($('#language').val()) { //(response[0].translations[0].text);
-            case "0":
-              outputText = response[0].translations[0].text;
-              break;
-            case "1":
-              outputText = response[0].translations[1].text;
-              break;
-            case "2":
-              outputText = response[0].translations[2].text;
-              break;
-            case "3":
-              outputText = response[0].translations[3].text;
-              break;
-            default:
-              return;
-          }
-          if (flag == true) {
-            $('#rightShow').val(outputText);
-          }
-          else {
-            $('#leftShow').val(outputText);
-          }
-        }
+        success: whenSuccess
+        // success: function (response) { //success是ajax的屬性 是指向一個function 不是function的執行結果
+        //   //呼叫遠端服務後的回傳結果
+        //   switch ($('#language').val()) { //(response[0].translations[0].text);
+        //     case "0":
+        //       outputText = response[0].translations[0].text;
+        //       break;
+        //     case "1":
+        //       outputText = response[0].translations[1].text;
+        //       break;
+        //     case "2":
+        //       outputText = response[0].translations[2].text;
+        //       break;
+        //     case "3":
+        //       outputText = response[0].translations[3].text;
+        //       break;
+        //     default:
+        //       return;
+        // }
+        //     if (flag == true) {
+        //   $('#rightShow').val(outputText);
+        // }
+        // else {
+        //   $('#leftShow').val(outputText);
+        // }
+        //}
       });
     }
   </script>
