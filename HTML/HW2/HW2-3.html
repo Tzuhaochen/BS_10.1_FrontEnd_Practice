@@ -26,7 +26,11 @@
     $(document).ready(function () {
       $('#toRightButton').click(toRight);
       $('#toLeftButton').click(toLeft);
+      init();
     });
+    function init() {
+      localStorage.getItem($('#rightShow').val(outputText));
+    }
     function toRight() {
       AjaxTrans('#leftShow');
       flag = true;
@@ -35,6 +39,8 @@
       AjaxTrans('#rightShow');
       flag = false;
     }
+    // localStorage.setItem('MyData', "資料");
+    // alert(localStorage.getItem('MyData'));
     function whenSuccess(response) {
       switch ($('#language').val()) { //(response[0].translations[0].text);
         case "0":
@@ -54,11 +60,17 @@
       }
       if (flag == true) {
         $('#rightShow').val(outputText);
+        localStorage.setItem($('#rightShow'), outputText);
+        //alert(localStorage.getItem($('#rightShow').val(outputText)));
+        // localStorage.setItem("#rightShow", "$('#rightShow').val(outputText)");
+        // alert(localStorage.getItem());
       }
       else {
         $('#leftShow').val(outputText);
+        localStorage.setItem($('#leftShow'), outputText);
       }
     }
+
     function AjaxTrans(id) {
       $.ajax({  //物件當成參數來傳
         type: "post", //http verb
@@ -71,7 +83,7 @@
         data: JSON.stringify([{ "Text": $(id).val() }]),
         //要翻譯的文字 擁有Text屬性的物件的陣列 JSON是靜態類別的方法(function)
         dataType: "json",
-        success: whenSuccess
+        success: whenSuccess //參考 非回傳值
         // success: function (response) { //success是ajax的屬性 是指向一個function 不是function的執行結果
         //   //呼叫遠端服務後的回傳結果
         //   switch ($('#language').val()) { //(response[0].translations[0].text);
