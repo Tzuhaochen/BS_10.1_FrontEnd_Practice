@@ -37,17 +37,36 @@
           data: dat
         }
       );
+      //Create
       $('#ButtonShowAddNewWindow').click(ButtonShowAddNewWindow);
       $('#ButtonAddNew').click(ButtonAddNew);
+      //Read
       $('#ButtonShowImport').click(ButtonShowImport);
       $('#ButtonShowExport').click(ButtonShowExport); //call選單的button
       $('#ButtonShowImport').click(ButtonShowImport);
       $('#ButtonImport').click(ButtonImport);
+      //Update
+      $('#ButtonUpdate').click(ButtonUpdate);
+      //Delete
+      $('#ButtonDelete').click(ButtonDelete);
+      //Edit
+      $('#Table1 tbody').on('click', 'tr', function () {
+        CurrentEditItem = DataTable.row(this).data();
+        $('#ModalEdit').modal();
+        $('#EditField_Name').val(CurrentEditItem[0]);
+        $('#EditField_Birthday').val(CurrentEditItem[1]);
+        $('#EditField_TEL').val(CurrentEditItem[2]);
+        $('#EditField_Email').val(CurrentEditItem[3]);
+        $('#EditField_Address').val(CurrentEditItem[4]);
+      });
+      LoadData();
+      SaveData();
     }
     //Create New Window
     function ButtonShowAddNewWindow() {
       $('#ModalAddNew').modal();
     }
+    //Create
     function ButtonAddNew() {
       //取得資料
       var item = [
@@ -81,6 +100,7 @@
       });
     }
     //設定匯入modal的形式
+    //Read
     function ButtonShowImport() {
       $('#field_DataJSON').val('');
       $('#field_DataJSON').attr('readonly', false);
@@ -91,11 +111,30 @@
       dat = JSON.parse($('#field_DataJSON').val());
       refreshData();
     }
+    //Update
+    function ButtonUpdate() {
+      let NewItem =
+        [
+          $('#EditField_Name').val(),
+          $('#EditField_Birthday').val(),
+          $('#EditField_TEL').val(),
+          $('#EditField_Email').val(),
+          $('#EditField_Address').val(),
+        ]
+      let n = dat.indexOf(CurrentEditItem);
+      dat[n] = NewItem;
+      refreshData();
+      SaveData();
+    }
+    //Delete
+    function ButtonDelete() {
+      DeleteItem(CurrentEditItem);
+    }
+    //Edit 在初始化裡面↑↑↑↑↑↑↑
     function SaveData() {
       let str = JSON.stringify(dat);
       localStorage.setItem('Memory', str);
     }
-
     function LoadData() {
       if (localStorage.getItem('Memory') != null) {
         var str = localStorage.getItem('Memory');
@@ -110,30 +149,13 @@
       DataTable.rows.add(dat);
       DataTable.draw();
     }
+    function DeleteItem(item) {
+      let n = dat.indexOf(item);
+      dat.splice(n, 1);
+      refreshData();
+      SaveData();
+    }
 
-    // $(document).ready(function () {
-    //   DataTable = $('#Table1').DataTable(
-    //     {
-    //       data: dat
-    //     }
-    //   );
-    //   $('#ButtonShowAddNewWindow').click(ButtonShowAddNewWindow);
-    //   $('#ButtonAddNew').click(ButtonAddNew);
-    //   //$('#changeDataButton').click(changeButton)
-    // });
-
-    // function changeButton() {
-    //   if (flag == true) {
-    //     MyTable.clear();
-    //     MyTable.rows.add(dat2).draw();
-    //     flag = false;
-    //   }
-    //   else if (flag == false) {
-    //     MyTable.clear();
-    //     MyTable.rows.add(dat).draw();
-    //     flag = true;
-    //   }
-    // }
   </script>
 
   <style>
@@ -384,6 +406,30 @@
 
 
 <script>
+    // $(document).ready(function () {
+    //   DataTable = $('#Table1').DataTable(
+    //     {
+    //       data: dat
+    //     }
+    //   );
+    //   $('#ButtonShowAddNewWindow').click(ButtonShowAddNewWindow);
+    //   $('#ButtonAddNew').click(ButtonAddNew);
+    //   //$('#changeDataButton').click(changeButton)
+    // });
+
+    // function changeButton() {
+    //   if (flag == true) {
+    //     MyTable.clear();
+    //     MyTable.rows.add(dat2).draw();
+    //     flag = false;
+    //   }
+    //   else if (flag == false) {
+    //     MyTable.clear();
+    //     MyTable.rows.add(dat).draw();
+    //     flag = true;
+    //   }
+    // }
+
 // $('#changeDataButton').click(function (e) {
 // if (flag == true) {
 // MyTable.clear();
