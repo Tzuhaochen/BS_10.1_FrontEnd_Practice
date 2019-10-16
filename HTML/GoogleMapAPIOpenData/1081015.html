@@ -103,8 +103,10 @@
 </head>
 
 <body>
-  <div class="container">
-    <div id="map"></div>
+  <div class="container-fluid row h-100 ml-5 p-10">
+    <div class="col-10">
+      <div id="map"></div>
+    </div>
   </div>
 
   <script>
@@ -139,12 +141,12 @@
         var marker = new google.maps.Marker({
           position: features[i].position,
           icon: icons[features[i].type].icon,
+          title: features[i].tittle,
           map: map,
-          title: features[i].title
         });
       };
 
-      // //呼叫OpenData
+      //呼叫OpenData
       // var Opendata = GetOpenData();
       // console.log("Open data is", Opendata);
       // //顯示每一個item的值

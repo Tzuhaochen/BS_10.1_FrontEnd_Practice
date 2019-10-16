@@ -8,7 +8,7 @@
   <title>Document</title>
   <!-- google-font  -->
   <style>
-    body {
+    * {
       font-family: 'Noto Sans TC', sans-serif;
     }
   </style>
@@ -18,7 +18,7 @@
   <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
 
-  <!-- bootstrap -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -27,10 +27,14 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
+  <!-- https://cdnjs.com/libraries/jquery-tagsinput -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
   <script>
     var DataTable;
     var dat = [
-      ['Eric', '0912345678', '1980/1/1', 'eric@gmail.com', '台北市光復南路179號13樓'],
+      ['Eric', '0912345678', '1980/1/1', 'eric@gmail.com', '台北市光復南路179號13樓', ['1', '2', '3']]
     ];
     var flag = true;
     $(function () {
@@ -42,6 +46,7 @@
           data: dat
         }
       );
+      commentTag();
       //Create
       $('#ButtonShowAddNewWindow').click(ButtonShowAddNewWindow);
       $('#ButtonAddNew').click(ButtonAddNew);
@@ -63,9 +68,14 @@
         $('#EditField_TEL').val(CurrentEditItem[2]);
         $('#EditField_Email').val(CurrentEditItem[3]);
         $('#EditField_Address').val(CurrentEditItem[4]);
+        $('#EditField_Comment').val(CurrentEditItem[5]);
       });
       LoadData();
       SaveData();
+    }
+    function commentTag() {
+      $('#field_Comment').tagsInput();
+      $('#EditField_Comment').tagsInput();
     }
     //Create New Window
     function ButtonShowAddNewWindow() {
@@ -79,7 +89,8 @@
         $('#field_Birthday').val(),
         $('#field_TEL').val(),
         $('#field_Email').val(),
-        $('#field_Address').val()
+        $('#field_Address').val(),
+        $('#field_Comment').val()
       ];
       dat.push(item);
       //儲存
@@ -90,6 +101,7 @@
       $('#field_TEL').val('');
       $('#field_Email').val('');
       $('#field_Address').val('');
+      $('#field_Comment').importTags('');
       LoadData();
     }
     //設定匯出modal的形式
@@ -101,7 +113,6 @@
       $('#ModalDataExport').modal();
       $('#Table1 tbody').on('click', 'tr', function () {
         CurrentEditItem = DataTable.row(this).data();
-
       });
     }
     //設定匯入modal的形式
@@ -125,6 +136,8 @@
           $('#EditField_TEL').val(),
           $('#EditField_Email').val(),
           $('#EditField_Address').val(),
+          $('#EditField_Comment').val(),
+          $('#EditField_Comment').tagsInput()
         ]
       let n = dat.indexOf(CurrentEditItem);
       dat[n] = NewItem;
@@ -142,6 +155,7 @@
     }
     function LoadData() {
       if (localStorage.getItem('Memory') != null) {
+        // localStorage.clear('Memory');
         var str = localStorage.getItem('Memory');
         //取回資料  
         dat = JSON.parse(str);
@@ -228,6 +242,10 @@
             <a>地址</a>
             <input type="text" class="form-control" id="field_Address">
           </div>
+          <div>
+            <a>備註</a>
+            <textarea type="text" rows="3" class="form-control" id="field_Comment" style="resize:none"></textarea>
+          </div>
         </div>
 
         <!-- Modal footer -->
@@ -283,6 +301,9 @@
             <input id="EditField_Email" type="email" class="form-control" />
             <label>地址</label>
             <input id="EditField_Address" type="address" class="form-control" />
+            <label>備註</label>
+            <textarea type="text" rows="3" col="5" class="form-control tags" id="EditField_Comment"
+              style="resize:none"></textarea>
           </form>
         </div>
         <!-- Modal footer -->
@@ -305,6 +326,7 @@
             <th>電話</th>
             <th>email</th>
             <th>地址</th>
+            <th>備註</th>
           </tr>
         </thead>
         <tbody>
@@ -314,83 +336,7 @@
             <td>Edinburgh</td>
             <td>61</td>
             <td>2011/04/25</td>
-          </tr>
-          <tr>
-            <td>Garrett Winters</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011/07/25</td>
-          </tr>
-          <tr>
-            <td>Haley Kennedy</td>
-            <td>Senior Marketing Designer</td>
-            <td>London</td>
-            <td>43</td>
-            <td>2012/12/18</td>
-          </tr>
-          <tr>
-            <td>Tatyana Fitzpatrick</td>
-            <td>Regional Director</td>
-            <td>London</td>
-            <td>19</td>
-            <td>2010/03/17</td>
-          </tr>
-          <tr>
-            <td>Michael Silva</td>
-            <td>Marketing Designer</td>
-            <td>London</td>
-            <td>66</td>
-            <td>2012/11/27</td>
-          </tr>
-          <tr>
-            <td>Paul Byrd</td>
-            <td>Chief Financial Officer (CFO)</td>
-            <td>New York</td>
-            <td>64</td>
-            <td>2010/06/09</td>
-          </tr>
-          <tr>
-            <td>Gloria Little</td>
-            <td>Systems Administrator</td>
-            <td>New York</td>
-            <td>59</td>
-            <td>2009/04/10</td>
-          </tr>
-          <tr>
-            <td>Bradley Greer</td>
-            <td>Software Engineer</td>
-            <td>London</td>
-            <td>41</td>
-            <td>2012/10/13</td>
-          </tr>
-          <tr>
-            <td>Dai Rios</td>
-            <td>Personnel Lead</td>
-            <td>Edinburgh</td>
-            <td>35</td>
-            <td>2012/09/26</td>
-          </tr>
-          <tr>
-            <td>Jenette Caldwell</td>
-            <td>Development Lead</td>
-            <td>New York</td>
-            <td>30</td>
-            <td>2011/09/03</td>
-          </tr>
-          <tr>
-            <td>Yuri Berry</td>
-            <td>Chief Marketing Officer (CMO)</td>
-            <td>New York</td>
-            <td>40</td>
-            <td>2009/06/25</td>
-          </tr>
-          <tr>
-            <td>Caesar Vance</td>
-            <td>Pre-Sales Support</td>
-            <td>New York</td>
-            <td>21</td>
-            <td>2011/12/12</td>
+            <td>......</td>
           </tr>
         </tbody>
       </table>
