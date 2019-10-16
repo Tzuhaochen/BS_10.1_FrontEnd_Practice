@@ -68,7 +68,7 @@
         $('#EditField_TEL').val(CurrentEditItem[2]);
         $('#EditField_Email').val(CurrentEditItem[3]);
         $('#EditField_Address').val(CurrentEditItem[4]);
-        $('#EditField_Comment').val(CurrentEditItem[5]);
+        $('#EditField_Comment').importTags(CurrentEditItem[5]);
       });
       LoadData();
       SaveData();

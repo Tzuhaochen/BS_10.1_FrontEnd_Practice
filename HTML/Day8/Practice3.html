@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- fontaweson -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $(function () {
+      init();
+    });
+    function init() {
+      $('#ButtonSend').click(ButtonSend);
+      $('#inputText').keypress(function (e) {
+        if (e.keyCode == 13) {
+          ButtonSend();
+          return false;
+        }
+      });
+    }
+    function ButtonSend() {
+      let html = $('#TalkContainer').html();
+      let UserSay = $('#inputText').val();
+      $('#inputText').val('');
+      $('#TalkContainer').html(html + '<br/><br/>用戶：' + UserSay);
+      $('#TalkContainer').scrollTop($('#TalkContainer')[0].scrollHeight);
+      GetAnswer(UserSay, function (ret) {
+        let html = $('#TalkContainer').html();
+        $('#TalkContainer').html(html + '<br /><br />客服 : ' + ret.answers[0].answer);
+        //scroll to bottom
+        console.log($('#TalkContainer')[0].scrollHeight);
+
+        $('#TalkContainer').scrollTop($('#TalkContainer')[0].scrollHeight);
+      });
+    }
+    function GetAnswer(text, whenSuccess) {
+      $.ajax({
+        type: "post",
+        headers: {
+          "Authorization": "EndpointKey f9edc11f-450b-44bd-8c7a-b84f511f86c4",
+          "Content-Type": "application/json"
+        },
+        url: "https://test20191016howard.azurewebsites.net/qnamaker/knowledgebases/de66383c-4872-4ed0-a53b-56d5fd493128/generateAnswer",
+        data: JSON.stringify({ "question": text }),
+        dataType: "json",
+        success: whenSuccess,
+        // function (ret) {
+        //   //如果成功
+        //   console.log(ret.answers[0].answer)
+        //   outputText = ret.answers[0].answer;
+        //   $('#outputText').append(`
+        // <div class="row"><div class="col-6 bg-light m-2">${text}</a></div>
+        // <div class="row"><div class="col-12 bg-light m-2">${outputText}</a></div>`);
+        //}, 
+        error: function (err) {
+          //如果有錯
+          alert('輸入有誤');
+        }
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <div class="row" style="margin: 10px">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <!-- 卡片  -->
+      <div class="card">
+        <!-- 卡片標題 -->
+        <span class="card-header bg-primary" style="color:white">
+          對談機器人
+        </span>
+        <!-- 卡片內容 -->
+        <div class="card-body">
+          <!-- 對談區 -->
+          <div id="TalkContainer" style="overflow: auto; height: 300px;">
+            <div id="outputText">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="form-inline">
+        <input id="inputText" class="form-control" style="width:88%">
+        <button type="button" id="ButtonSend" class="btn btn-primary">送出</button>
+      </form>
+    </div>
+    <div class="col-2"></div>
+</body>
+
+</html>
