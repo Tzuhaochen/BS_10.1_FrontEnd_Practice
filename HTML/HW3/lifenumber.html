@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <!--<link rel="icon" href="../../favicon.ico">-->
+  <title>生命靈數</title>
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <!-- Bootstrap core CSS -->
+  <!-- <link rel="stylesheet" href="stylesheets/link.css"> -->
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet" />
+  <link href="stylesheets/dashboard.css" rel="stylesheet" />
+  <!-- Link DatePickerX -->
+  <!-- https://www.cssscript.com/lightweight-pure-javascript-date-picker-library-datepickerx/ -->
+  <link rel="stylesheet" href="DatePickerX.css">
+  <!-- link JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- Bootstrap js -->
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    .real,
+    .adjust-location {
+      width: 80%;
+    }
+
+    .span-color {
+      background-color: rgb(173, 221, 240);
+      border-radius: 10%;
+      padding: 0.2%
+    }
+  </style>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      var $min = document.querySelector('.real [name="realDPX-min"]');
+      $min.DatePickerX.init({
+        mondayFirst: true,
+        minDate: new Date(0001, 1, 1),
+        maxDate: new Date(9999, 12, 31)
+      });
+    });
+  </script>
+
+  <script>
+    $(function () {
+      init();
+    });
+    function init() {
+      $('#btn_Numerology').click(btn_Numerology);
+    }
+    // class Constellation {
+    //   constructor() {
+    //     this.Constellation = [];
+    //   }
+
+    // }
+
+    var Constellation = [
+      { "constellation": "capricorn", "date": 0 },
+      { "constellation": "aquarius", "date": 120 },
+      { "constellation": "pisces", "date": 219 },
+      { "constellation": "aries", "date": 321 },
+      { "constellation": "taurus", "date": 420 },
+      { "constellation": "gemini", "date": 522 },
+      { "constellation": "cancer", "date": 621 },
+      { "constellation": "leo", "date": 723 },
+      { "constellation": "virgo", "date": 823 },
+      { "constellation": "libra", "date": 923 },
+      { "constellation": "scorpio", "date": 1024 },
+      { "constellation": "sagittarius", "date": 1123 },
+      { "constellation": "capricorn", "date": 1222 },
+      { "constellation": "capricorn", "date": 1232 },
+    ];
+
+    function btn_Numerology() {
+      // GetNumber = GetNumber();
+      // GetConstellation = GetConstellation();
+      BitrthString = $('#inputDate').val();
+      GetResultByAjax(GetConstellation(), GetNumber(), BitrthString);
+      //GetResultByAjax();
+    }
+
+    function GetNumber() {
+      input = $('#inputDate').val();
+      input = input.replace("/", "").replace("/", "");
+      //console.log(input);
+      while (input > 9) {
+        input = Math.floor(input / 10) + Math.floor(input % 10);
+        // input_tempA = Math.floor(input / 10);
+        // input_tempB = Math.floor(input % 10);
+        // console.log(input_tempA);
+        // input = input_tempA + input_tempB;
+      }
+      //console.log(input);
+      return input;
+    }
+    function GetConstellation() {
+      input = $('#inputDate').val();
+      conduct = [];
+      //原本的格式是xxxx年/xx月/xx日
+      conduct = input.split('/');
+      // console.log(conduct);
+      conduct[1] = parseInt(conduct[1], 10) * 100 + parseInt(conduct[2], 10);
+      //分開後取xx月*10 + xx日
+      // console.log(conduct[1]);
+      // console.log(Constellation);
+      let output = "";
+      //判斷傳回去的星座是什麼
+      for (let i = 0; i < Constellation.length - 1; i++) {
+        if (parseInt(Constellation[i].date, 10) <= conduct[1] &&
+          parseInt(Constellation[i + 1].date, 10) > conduct[1]) {
+          output = Constellation[i].constellation;
+        }
+      }
+      //console.log(output);
+      return output;
+    }
+
+    function GetResultByAjax(constellation, number, BitrthString) {
+      $.ajax({
+        type: "get",
+        url: `https://buildschoolnumerology.azurewebsites.net/api/Number/Numerology?constellation=${constellation}`,
+        dataType: "json",
+        success: function (response) {
+          $('#output').append(`<div class='list-group-item adjust-location row'>
+                                <div class="col-md-12">
+                                  <span class="span-color col-md-1">${BitrthString}</span> 
+                                  <span class="col-md-10">出生的你</span>
+                                  <button class="closeWindow btn btn-light col-xs-0.2 ml-5">x</button>
+                                  </span>
+                                </div>
+                                <div class="col-md-12">星座是${response.name}</div> 
+                                <div class="col-md-12">
+                                <span></span>
+                                <span>你的生命靈數：
+                                ${number}.${response.lookup[number - 1]}
+                                </div>
+                                </div> `)
+          $('.closeWindow').click(function () {
+            $(this).parent().parent().remove()
+          })
+        }
+      });
+    }
+
+  </script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Project name</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control" placeholder="Search..." />
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li class="active">
+            <a href="#">Overview <span class="sr-only">(current)</span></a>
+          </li>
+          <li><a href="#">Reports</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="#">Export</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li><a href="">Nav item</a></li>
+          <li><a href="">Nav item again</a></li>
+          <li><a href="">One more nav</a></li>
+          <li><a href="">Another nav item</a></li>
+          <li><a href="">More navigation</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li><a href="">Nav item again</a></li>
+          <li><a href="">One more nav</a></li>
+          <li><a href="">Another nav item</a></li>
+        </ul>
+      </div>
+      <h2 class="col-md-12 text-center">生命靈數</h2>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="real">
+                <input id="inputDate" class="form-control d-flex flex-column bd-highlight mb-3" type="text"
+                  name="realDPX-min" placeholder="請輸入生日">
+              </label>
+              <button class="btn btn-primary" id="btn_Numerology">取得結果</button>
+            </div>
+            <div class="col-md-12" id="output"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Link DatePickerX JS -->
+  <script src=" DatePickerX.js"></script>
+</body>
+
+</html>
