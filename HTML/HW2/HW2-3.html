@@ -78,7 +78,7 @@
           //http header
           "Ocp-Apim-Subscription-Key": "4a6704f780c14d32948b65e44c594b8a",//"換成你自己申請到的key",
           "Content-Type": "application/json"
-        },                                                            //?api-後面的都是參數
+        },                                                            //?api-後面的都是參數 api決定呼叫的resource
         url: "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en&to=zh-Hant&to=ja&to=ko",
         data: JSON.stringify([{ "Text": $(id).val() }]),
         //要翻譯的文字 擁有Text屬性的物件的陣列 JSON是靜態類別的方法(function)

@@ -24,6 +24,10 @@
                 setPoint(x, y, point) {
                     /* todo */
                     //設定落子
+                    console.log("x", x);
+                    console.log("y", y);
+                    console.log("point", point);
+                    console.log("xx", this.result[x][y]);
                     this.result[x][y] = point;
                 }
 
@@ -57,9 +61,10 @@
                     flag = "X";
                     obj.innerText = 'X';
                 }
-                //show
+                //show  
                 var label = document.getElementById('lebel1');
                 //顯示位置
+
                 label.innerHTML = "rowIndex: " + obj.parentElement.rowIndex + " CellIndex: " + obj.cellIndex + " --> " + obj.innerText;
                 //設定落子
                 game.setPoint(obj.parentElement.rowIndex, obj.cellIndex, obj.innerText);

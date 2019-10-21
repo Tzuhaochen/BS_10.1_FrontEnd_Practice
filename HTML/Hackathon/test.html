@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
+  <meta name="HandheldFriendly" content="true" />
+  <link rel="stylesheet" href="jquery.mobile-1.4.3.min.css" />
+  <!-- <script src="jquery-2.1.1.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript"> </script>
+  <title>拼图游戏 </title>
+  <style>
+    .picture {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="title">
+    <h2>拼图游戏</h2>
+  </div>
+  <div id="slider">
+    <form> <label>简单</label> <input type="range" id="scale" value="4" min="3" max="5" step="1"> <label>困难</label>
+      <div data-role="controlgroup"> <a data-ajax="false" href="menu.html" data-role="button">返回菜单</a> </div>
+    </form> <br>
+  </div>
+  <div id="main" class="main"> <canvas id="puzzle" width="480px" height="480px"></canvas> </div>
+  <script src="sliding.js"></script>
+</body>
+
+</html>
