@@ -3,31 +3,33 @@ var img = new Image();
 img.src = 'http://www.brucealderman.info/Images/dimetrodon.jpg';
 img.addEventListener('load', drawTiles, false);
 var boardSize = document.getElementById("puzzle").width;
-var tileCount = document.getElementById("scale").value;
-var tileSize = boardSize / tileCount;
-var clickLoc = new Object;
-clickLoc.x = 0;
-clickLoc.y = 0;
-var emptyLoc = new Object;
-emptyLoc.x = 0;
-emptyLoc.y = 0;
+var difficulty = document.getElementById("difficulty").value;
+var PuzzleSize = boardSize / difficulty;
+var clickLocation = new Object;
+clickLocation.x = 0;
+clickLocation.y = 0;
+var originLocation = new Object;
+originLocation.x = 0;
+originLocation.y = 0;
 var solved = false;
-var boardParts = new Object;
+var Puzzles = new Object;
 setBoard();
-document.getElementById('scale').onchange = function () {
-    tileCount = this.value;
-    tileSize = boardSize / tileCount;
+document.getElementById('difficulty').onchange = function () {
+    difficulty = this.value;
+    PuzzleSize = boardSize / difficulty;
     setBoard();
     drawTiles();
 };
+// 檢測滑鼠放的位置
 document.getElementById('puzzle').onmousemove = function (e) {
-    clickLoc.x = Math.floor((e.pageX - this.offsetLeft) / tileSize);
-    clickLoc.y = Math.floor((e.pageY - this.offsetTop) / tileSize);
+    clickLocation.x = Math.floor((e.pageX - this.offsetLeft) / PuzzleSize);
+    clickLocation.y = Math.floor((e.pageY - this.offsetTop) / PuzzleSize);
 };
-document.getElementById('puzzle').onclick = function () {
-    if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {
-        slideTile(emptyLoc, clickLoc);
-        drawTiles();
+// 拼圖被點擊時，抓點到的座標
+document.getElementById('puzzle').onclick = function () { // 若為上下左右相連則交換
+    if (CalculateDistance(clickLocation.x, clickLocation.y, originLocation.x, originLocation.y) == 1) {
+        SwapLocation(originLocation, clickLocation);
+        drawTiles(); // 若得結果則匯出圖片
     }
     if (solved) {
         setTimeout(function () {
@@ -36,49 +38,50 @@ document.getElementById('puzzle').onclick = function () {
     }
 };
 function setBoard() { // let number = [];
-    var initialNumberRow = "";
-    var initialNumberCol = "";
+    let initialNumberRow = "";
+    let initialNumberCol = "";
     let numberRow = [];
     let numberCol = [];
-    for (let i = 0; i < tileCount; i++) {
-        numberRow[i] = Math.floor(Math.random() * tileCount).toString(); // returns a random integer from 0 to 9
+    // 產生隨機的行列座標
+    for (let i = 0; i < difficulty; i++) {
+        numberRow[i] = Math.floor(Math.random() * difficulty).toString(); // returns a random integer from 0 to 9
         if (initialNumberRow.includes(numberRow[i].toString())) {
             i--;
             continue;
         }
         initialNumberRow += numberRow[i];
     }
-    for (let i = 0; i < tileCount; i++) {
-        numberCol[i] = Math.floor(Math.random() * tileCount).toString(); // returns a random integer from 0 to 9
+    for (let i = 0; i < difficulty; i++) {
+        numberCol[i] = Math.floor(Math.random() * difficulty).toString(); // returns a random integer from 0 to 9
         if (initialNumberCol.includes(numberCol[i].toString())) {
             i--;
             continue;
         }
         initialNumberCol += numberCol[i];
     }
-    boardParts = new Array(tileCount);
-    for (var i = 0; i < tileCount; ++ i) {
-        boardParts[i] = new Array(tileCount);
-        for (var j = 0; j < tileCount; ++ j) {
-            boardParts[i][j] = new Object;
-            boardParts[i][j].x = initialNumberRow[i];
-            // console.log((tileCount - 1) - i);
-            boardParts[i][j].y = initialNumberCol[j];
+    Puzzles = new Array(difficulty);
+    for (var i = 0; i < difficulty; i++) {
+        Puzzles[i] = new Array(difficulty);
+        for (var j = 0; j < difficulty; j++) {
+            Puzzles[i][j] = new Object;
+            Puzzles[i][j].x = initialNumberRow[i];
+            // console.log((difficulty - 1) - i);
+            Puzzles[i][j].y = initialNumberCol[j];
         }
     }
-    emptyLoc.x = boardParts[tileCount - 1][tileCount - 1].x;
-    emptyLoc.y = boardParts[tileCount - 1][tileCount - 1].y;
+    originLocation.x = Puzzles[difficulty - 1][difficulty - 1].x;
+    originLocation.y = Puzzles[difficulty - 1][difficulty - 1].y;
     solved = false;
 }
 function drawTiles() {
     context.clearRect(0, 0, boardSize, boardSize);
-    for (var i = 0; i < tileCount; ++ i) {
-        for (var j = 0; j < tileCount; ++ j) {
-            var x = boardParts[i][j].x;
-            var y = boardParts[i][j].y;
-            if (i != emptyLoc.x || j != emptyLoc.y || solved == true) {
-                context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize, i * tileSize, j * tileSize, tileSize, tileSize);
-                // 從最左邊(0,0)開始設定  //每次左上角設定座標是tileSize(sx,sy)
+    for (var i = 0; i < difficulty; i++) {
+        for (var j = 0; j < difficulty; j++) {
+            var x = Puzzles[i][j].x;
+            var y = Puzzles[i][j].y;
+            if (i != originLocation.x || j != originLocation.y || solved == true) {
+                context.drawImage(img, x * PuzzleSize, y * PuzzleSize, PuzzleSize, PuzzleSize, i * PuzzleSize, j * PuzzleSize, PuzzleSize, PuzzleSize);
+                // 從最左邊(0,0)開始設定  //每次左上角起始設定座標是tileSize(sx,sy)
                 // sWidth, sHeight The width of the sub-rectangle of the source image to draw into the destination context
                 // 繪製到目標的寬度.高度(dWidth,dHeight))
                 // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
@@ -86,15 +89,15 @@ function drawTiles() {
         }
     }
 }
-function distance(x1, y1, x2, y2) {
+function CalculateDistance(x1, y1, x2, y2) {
     return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 }
-function slideTile(toLoc, fromLoc) {
+function SwapLocation(toLoc, fromLoc) {
     if (! solved) {
-        boardParts[toLoc.x][toLoc.y].x = boardParts[fromLoc.x][fromLoc.y].x;
-        boardParts[toLoc.x][toLoc.y].y = boardParts[fromLoc.x][fromLoc.y].y;
-        boardParts[fromLoc.x][fromLoc.y].x = tileCount - 1;
-        boardParts[fromLoc.x][fromLoc.y].y = tileCount - 1;
+        Puzzles[toLoc.x][toLoc.y].x = Puzzles[fromLoc.x][fromLoc.y].x;
+        Puzzles[toLoc.x][toLoc.y].y = Puzzles[fromLoc.x][fromLoc.y].y;
+        Puzzles[fromLoc.x][fromLoc.y].x = difficulty - 1;
+        Puzzles[fromLoc.x][fromLoc.y].y = difficulty - 1;
         toLoc.x = fromLoc.x;
         toLoc.y = fromLoc.y;
         checkSolved();
@@ -102,9 +105,9 @@ function slideTile(toLoc, fromLoc) {
 }
 function checkSolved() {
     var flag = true;
-    for (var i = 0; i < tileCount; ++ i) {
-        for (var j = 0; j < tileCount; ++ j) {
-            if (boardParts[i][j].x != i || boardParts[i][j].y != j) {
+    for (var i = 0; i < difficulty; i++) {
+        for (var j = 0; j < difficulty; j++) {
+            if (Puzzles[i][j].x != i || Puzzles[i][j].y != j) {
                 flag = false;
             }
         }
