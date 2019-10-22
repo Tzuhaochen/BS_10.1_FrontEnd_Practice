@@ -35,9 +35,19 @@
       <h2 class="text-center">拼圖</h2>
     </div>
     <br />
-    <input type="range" id="difficulty" value="2" min="2" max="2" step="1">
+    <select name="" id="difficulty">
+      <option value="1" selected>請選擇難度</option>
+      <option value="3">簡單(3X3)</option>
+      <option value="4">中等(4X4)</option>
+      <option value="5">困難(5X5)</option>
+    </select>
+    <br />
+    <!-- <input type="range" id="difficulty" value="2" min="2" max="2" step="1"> -->
+
     <br />
     <div id="main" class="main"> <canvas id="puzzle" width="480px" height="480px"></canvas> </div>
+    <input type="file" accept="image/*" id="input-img" />
+    <br />
   </div>
   <script src="sliding.js"></script>
 </body>
