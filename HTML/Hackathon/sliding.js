@@ -1,9 +1,9 @@
 // obtain the rendering context and its drawing functions(MDN)
-// var context = document.getElementById('puzzle').getContext('2d');
+var context = document.getElementById('puzzle').getContext('2d');
 // console.log(context);
 
-// var img = new Image();
-// img.src = 'http://w3.tkgsh.tn.edu.tw/97c111/images/photos/animal/01.jpg';
+var img = new Image();
+img.src = 'http://w3.tkgsh.tn.edu.tw/97c111/images/photos/animal/01.jpg';
 var boardSize = document.getElementById("puzzle").width;
 // 選切幾等分
 var difficulty = document.querySelector("option").value;
@@ -28,55 +28,55 @@ function init() { // console.log(document.getElementById("input-img"));
     readFile();
 }
 
-function doInput(id) {
-    var inputObj = document.createElement('input');
-    inputObj.addEventListener('change', readFile, false);
-    inputObj.type = 'file';
-    inputObj.accept = 'image/*';
-    inputObj.id = id;
-    // console.log(inputObj);
-    inputObj.click();
-}
+// function doInput(id) {
+//     var inputObj = document.createElement('input');
+//     inputObj.addEventListener('change', readFile, false);
+//     inputObj.type = 'file';
+//     inputObj.accept = 'image/*';
+//     inputObj.id = id;
+//     // console.log(inputObj);
+//     inputObj.click();
+// }
 
-function readFile() {
-    var file = this.files[0]; // 獲取input輸入的圖片
-    if (!/image\/\w /.test(file.type)) {
-        alert("請確保檔案為影象型別");
-        return false;
-    } // 判斷是否圖片，在移動端由於瀏覽器對呼叫file型別處理不同，雖然加了accept = 'image/*'，但是還要再次判斷
-    var reader = new FileReader();
-    reader.readAsDataURL(file); // 轉化成base64資料型別
-    reader.onload = function (e) {
-        drawToCanvas(this.result);
-    }
-}
+// function readFile() {
+//     var file = this.files[0]; // 獲取input輸入的圖片
+//     if (!/image\/\w /.test(file.type)) {
+//         alert("請確保檔案為影象型別");
+//         return false;
+//     } // 判斷是否圖片，在移動端由於瀏覽器對呼叫file型別處理不同，雖然加了accept = 'image/*'，但是還要再次判斷
+//     var reader = new FileReader();
+//     reader.readAsDataURL(file); // 轉化成base64資料型別
+//     reader.onload = function (e) {
+//         drawToCanvas(this.result);
+//     }
+// }
 
-function drawToCanvas(imgData) {
-    var cvs = document.querySelector('#puzzle');
-    // console.log(cvs);
-    cvs.width = 480;
-    cvs.height = 480;
-    // var context = document.getElementById('puzzle').getContext('2d');
-    // console.log(context);
-    // var context = cvs.getContext('2d');
-    var img = new Image();
-    // console.log(img);
-    img.src = imgData;
-    // console.log(img.src);
-    img.onload = function () {
-        // 必須onload之後再畫
-        // console.log(img.src);
-        img.addEventListener('load', drawTiles, true);
-        context.setBoard("initial");
-        context.drawTiles();
-        strDataURI = cvs.toDataURL(); // 獲取canvas base64資料
-    }
-}
+// function drawToCanvas(imgData) {
+//     var cvs = document.querySelector('#puzzle');
+//     // console.log(cvs);
+//     cvs.width = 480;
+//     cvs.height = 480;
+//     // var context = document.getElementById('puzzle').getContext('2d');
+//     // console.log(context);
+//     // var context = cvs.getContext('2d');
+//     var img = new Image();
+//     // console.log(img);
+//     img.src = imgData;
+//     // console.log(img.src);
+//     img.onload = function () {
+//         // 必須onload之後再畫
+//         // console.log(img.src);
+//         img.addEventListener('load', drawTiles, true);
+//         context.setBoard("initial");
+//         context.drawTiles();
+//         strDataURI = cvs.toDataURL(); // 獲取canvas base64資料
+//     }
+// }
 
 
-// img.addEventListener('load', drawTiles, true);
+img.addEventListener('load', drawTiles, true);
 let count = 0;
-// setBoard("initial");
+setBoard("initial");
 
 // An onchange attribute is an event listener to the object for the Event change.
 document.getElementById('difficulty').onchange = function () {
@@ -150,7 +150,6 @@ function drawTiles() { // 清除畫布並重畫
             // 前兩個敘述是 如果不是空的就畫出來                //但如果已經求解了就全畫出來  //困難度
             if (i != emptyLocation.x || j != emptyLocation.y || solved == true || difficulty == 1) {
                 context.drawImage(img, x * PuzzleSize, y * PuzzleSize, PuzzleSize, PuzzleSize, i * PuzzleSize, j * PuzzleSize, PuzzleSize, PuzzleSize);
-                count++;
                 // 從最左邊(0,0)開始設定  //每次左上角起始設定座標是tileSize(sx,sy)
                 // sWidth, sHeight The width of the sub-rectangle of the source image to draw into the destination context
                 // 繪製到目標座標的的寬度.高度起始點(dWidth,dHeight))
