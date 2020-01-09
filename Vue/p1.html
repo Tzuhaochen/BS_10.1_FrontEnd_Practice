@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+</head>
+<style>
+.input-length {
+  width:auto;
+}
+</style>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <!-- lab1 輸入標題與建立時鐘-->
+      <div id="block1" class="col-md-12">
+        <label>顯示標題：{{title}}</label>
+        <br/>
+        <label>時鐘：{{title2}}</label>
+        <br/>
+      </div>
+      <!-- lab2 當輸入的內容改變時，html也跟著改動 -->
+      <div id="block2" class="col-md-12">
+        <label id="block2text">{{title}}</label>
+        <input type="text" v-model="title">
+        <button class="btn" id="adjustWithClick">123</button>
+      </div>
+      <!-- lab3 人物資料 v-on:click-->
+      <div id="block3" class="row">
+        <div class="col-md-12" v-for="item in mydata">
+          <!-- @click="console.log('1212')" -->
+          <div class="col-md-12" v-bind:id="['Opt_'+item.ID]">
+            <div class="col-md-3">
+              <label>資料編號：{{item.ID}}</label>
+              <br />
+              <label>職稱:</label>
+              <input type="text" v-model="item.title" class="form-control "/>
+              <br/>
+              <label>Name:</label>
+              <input type="text" v-model="item.name" class="form-control "/>
+              <br />
+              <label>Phone:</label>
+              <input type="text" v-model="item.Phone" class="form-control "/>
+              <br />
+            </div>
+            <div class="col-md-3">
+              <img v-bind:src="item.PictureURL" class="img-fluid" style="float: right"/>
+            </div>
+            <div class="col-md-12">
+              <label>Address:</label>
+              <input type="text" v-model="item.Address"class="form-control input-length" />
+              <br />
+              <label>Memo:</label>
+              <input type="text" v-model="item.Memo" class="form-control input-length"/>
+              <br />
+            </div>  
+          </div>
+        </div>
+        <button class="btn" v-on:click="prompt">拿資料</button>
+        <br/>
+        <br />
+        <button class="btn" v-on:click="prev">上一張</button>
+        <button class="btn" v-on:click="next">下一張</button>
+      </div>
+      <!-- lab4 資料長度 v-for  -->
+      <div id="block4"class="col-md-12">
+        <div v-for="item in items">
+          <label>{{item}}</label>
+          <div :style="{width: item*10+'px'}"
+                style="height: 30px; background-color:aquamarine;"></div>
+          <br/>
+        </div>
+      </div>
+      <!-- lab5 vfor表格 -->
+      <div id="block5" class="col-md-12">
+        <table class="table">
+          <thead>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Usvalid</th>
+          </thead>
+          <tbody v-for="n in items">
+            <tr>
+              <td>{{n.ID}}</td>
+              <td>{{n.title}}</td>
+              <td>{{n.name}}</td>
+              <td>{{n.Phone}}</td>
+              <td>{{n.isValid}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  var block1Data = { 
+    title:"測試用標題",
+    title2:"123",
+  };
+  function Binding() {
+    new Vue(
+      {
+        el:'#block1',
+        data: block1Data
+      }
+    );
+  }
+  
+  var block2Data = {
+    title:"輸入文字"
+  }
+  function Binding2() {
+    new Vue(
+      {
+        el:'#block2',
+        data: block2Data
+      }
+    );
+  }
+  
+  var json =  { items: [
+    {
+      ID: 3,
+      title: "總裁",
+      name: "Eric",
+      PictureURL: "https://i.imgur.com/uxvy97n.png",
+      Phone: "0912345678",
+      Address: "新竹市大同區二三五路四號六樓",
+      Memo: "澳洲來的人", isValid: true
+          },
+    {
+      ID: 4,
+      title: "瑪農", name: "David", PictureURL: "https://i.imgur.com/qsQcoGh.png", Phone: "0987654321",
+      Address: "台北市信義區忠孝東路231號3樓",
+      Memo: "充滿活力的廉價勞工", isValid: true
+          },
+    {
+      ID: 5,
+      title: "Boss", name: "Amy", PictureURL: "https://i.imgur.com/dfww1JX.png", Phone: "0912121121",
+      Address: "高雄市仁義區六六路3號23樓",
+      Memo: "小資女", isValid: true
+          }
+  ] }
+  var no = 3
+  function Binding3() {
+    new Vue (
+      { 
+        el:'#block3',
+        data: {"mydata":json.items , formdata: {} ,nowindex: 0},  
+        methods: {
+          prompt: function(event) {
+            alert(JSON.stringify (json.items))
+          },
+          prev: function(event) {
+            $(`#Opt${no}`).css('display:block')
+          },
+          next: function (event) {
+            document.getElementById("")
+          }
+        }
+      }
+    )
+  }
+  
+  // var block4Data = [1, 3, 6, 2, 6, 23, 61, 25, 7];
+  function Binding4() {
+   new Vue (
+      {
+        el: '#block4',
+        data: items = [1, 3, 6, 2, 6, 23, 61, 25, 7]
+      }
+    );
+  } 
+
+  var data_5 = {
+      items: [
+        {
+          ID: 3,
+          title: "總裁", name: "Eric", PictureURL: "https://i.imgur.com/uxvy97n.png", Phone: "0912345678",
+          Address: "新竹市大同區二三五路四號六樓",
+          Memo: "澳洲來的人", isValid: true
+        },
+        {
+          ID: 4,
+          title: "瑪農", name: "David", PictureURL: "https://i.imgur.com/qsQcoGh.png", Phone: "0987654321",
+          Address: "台北市信義區忠孝東路231號3樓",
+          Memo: "充滿活力的廉價勞工", isValid: true
+        },
+        {
+          ID: 5,
+          title: "Boss", name: "Amy", PictureURL: "https://i.imgur.com/dfww1JX.png", Phone: "0912121121",
+          Address: "高雄市仁義區六六路3號23樓",
+          Memo: "小資女", isValid: true
+        },
+        {
+          ID: 6,
+          title: "總裁", name: "Eric", PictureURL: "https://i.imgur.com/uxvy97n.png", Phone: "0912345678",
+          Address: "新竹市大同區二三五路四號六樓",
+          Memo: "澳洲來的人", isValid: true
+        },
+        {
+          ID: 7,
+          title: "瑪農", name: "David", PictureURL: "https://i.imgur.com/qsQcoGh.png", Phone: "0987654321",
+          Address: "台北市信義區忠孝東路231號3樓",
+          Memo: "充滿活力的廉價勞工", isValid: true
+        },
+        {
+          ID: 8,
+          title: "Boss", name: "Amy", PictureURL: "https://i.imgur.com/dfww1JX.png", Phone: "0912121121",
+          Address: "高雄市仁義區六六路3號23樓",
+          Memo: "小資女", isValid: true
+        }
+      ]
+    }
+  function Binding5() {
+    new Vue(
+      {
+        el:"#block5",
+        data: data_5
+      }
+    )
+  }
+ 
+  
+  function setupClock() {
+    block1Data.title2 = new Date()
+    setTimeout(setupClock, 1000)
+  }
+  function btnClick() {
+    vardocument.getElementById("adjustWithClick")
+  } 
+
+
+  $(document).ready(function () {
+    Binding()
+    Binding2()
+    Binding3()
+    Binding4()
+    Binding5()
+    document.getElementById("adjustWithClick").onclick = function btnClick(){
+       block2Data.title =  
+       document.getElementById("adjustWithClick").innerText
+    }
+    setupClock() 
+  });
+</script>
+</html>

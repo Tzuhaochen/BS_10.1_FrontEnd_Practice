@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- <div id="block1" class="row" style="margin: 10px">
+    <div class="col-6">
+      <label>數值: </label>
+      <br />
+      <input v-model="number"><br />
+      <label>1 +...+ {{number}} = {{result}}</label>
+    </div>
+  </div> -->
+
+  <!-- <div id="block2" >
+      <label for="">身高</label>
+      <input v-model="height"/><br />
+      <label for="">體重</label>
+      <input v-model="weight" /><br />
+      <label for="">BMI = {{BMI}}</label>
+  </div> -->
+
+  <!-- <div id="block3">
+    <label>未稅價格</label>
+    <input v-model="withoutTax">
+    <label>含稅價格</label>
+    <input v-model="includedTax">
+  </div> -->
+
+  <div id="block4"> 
+    <label>輸入顏色碼</label>
+    <input v-model="color">
+    <label>更改色塊</label>
+    <input v-background="color" value="test words">
+  </div>
+</body>
+
+
+<script>
+    function BD() {
+      Vue.directive('background',{
+            bind: function (el, binding) {
+              el.style.backgroundColor = binding.value
+            },
+            update: function (el, binding) {
+              el.style.backgroundColor = binding.value
+            }
+      })
+    }
+    const vm4 = new Vue (
+      {
+        el: '#block4',
+        data: {color:"#CCCC"},
+        created() {
+          BD()
+        },  
+      }
+    );
+
+    // const vm3 = new Vue (
+    //   {
+    //     el:'#block3',
+    //     data: {withoutTax: 0 },
+    //     computed: { //監聽頁面上的
+    //       includedTax: {
+    //         get: function() {
+    //             return this.withoutTax* 1.05
+    //         },
+    //         set: function(val) {
+    //             this.withoutTax = val/ 1.05
+    //         }
+    //       }
+    //     },
+    //     created() {
+    //       this.withoutTax = this.withoutTax
+    //       this.includedTax = this.includedTax
+    //     },
+    //   }
+    // );
+
+    // const vm2 = new Vue (
+    //   {
+    //     el: '#block2',
+    //     data: {weight: 0 , height: 0, BMI:0},
+    //     computed: {
+    //       BMI: function() {
+    //         var bmi = 0;
+    //         bmi = this.weight /Math.pow(this.height/100, 2);
+    //         return bmi;
+    //       }
+    //     },
+    //     created() {
+    //        this.weight = this.weight;
+    //        this.height = this.height;
+    //        this.BMI =this.BMI;  
+    //     },
+    //   }
+    // );
+
+  //  const vm = new Vue (
+  //    {
+  //    el: '#block1',
+  //    data: {number: 0 },
+  //    computed: {
+  //       result : function() {
+  //         var total = 0;
+  //         // for(let index = 0; index <= this.number; index++) {
+  //         //   total = total + index;
+  //         // }
+  //         return total;
+  //       }
+  //     },
+  //     created() {
+  //       this.number = this.number;
+  //     },
+  //    }
+  //  );
+</script>
+</html>

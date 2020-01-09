@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container" id="block1">
+    <div style="width: 30vw" class="card">
+      <div class="card-body row">
+        <div class="col-6">
+          <h3>資料編號：{{formdata.ID}}</h3>
+          <label>職稱:</label>
+          <input class="form-control" type="text" v-model="formdata.title">
+          <label>姓名:</label>
+          <input class="form-control" type="text" v-model="formdata.name">
+          <label>Phone:</label>
+          <input class="form-control" type="text" v-model="formdata.Phone">
+        </div>
+        <div class="col-6">
+          <img style="width:100%" :src="formdata.PictureURL">
+        </div>
+        <div class="col-12">
+          <label>Address:</label>
+          <input class="form-control" type="text" v-model="formdata.Address">
+          <label>Memo:</label>
+          <textarea v-model="formdata.Memo" class="form-control" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <input class="btn btn-primary" type="button" value="上一筆" @click='last'>
+      <input class="btn btn-danger" type="button" value="復原" v-if="state === '復原'" @click="changeState('刪除')">
+      <input class="btn btn-danger" type="button" value="刪除" v-else @click="changeState('復原')">
+      <input class="btn btn-primary" type="button" value="下一筆" @click='next'>
+    </div>
+  </div>
+  <script>
+    var json = [{
+      "ID": 3,
+      title: "總裁",
+      name: "Eric",
+      PictureURL: "https://i.imgur.com/uxvy97n.png",
+      Phone: "0912345678",
+      Address: "新竹市大同區二三五路四號六樓",
+      Memo: "澳洲來的人",
+      isValid: true
+    },
+    {
+      ID: 4,
+      title: "瑪農",
+      name: "David",
+      PictureURL: "https://i.imgur.com/qsQcoGh.png",
+      Phone: "0987654321",
+      Address: "台北市信義區忠孝東路231號3樓",
+      Memo: "充滿活力的廉價勞工",
+      isValid: false
+    },
+    {
+      ID: 5,
+      title: "Boss",
+      name: "Amy",
+      PictureURL: "https://i.imgur.com/dfww1JX.png",
+      Phone: "0912121121",
+      Address: "高雄市仁義區六六路3號23樓",
+      Memo: "小資女",
+      isValid: false
+    }
+    ];
+    const vm = new Vue({
+      el: '#block1',
+      data: {
+        nowindex: 0,
+        formdata: {},
+        item: json,
+        state:'default'
+      },
+      methods: {
+        last() {
+          this.nowindex = this.nowindex-- < 0 ? 2 : this.nowindex--
+          this.formdata = this.item[this.nowindex]
+        },
+        next() {
+          this.nowindex = this.nowindex++ > 2 ? 0 : this.nowindex++
+          this.formdata = this.item[this.nowindex]
+        },
+        changeState: function(newState) {
+          this.state = newState
+        }
+      },
+      created() {
+        this.formdata = this.item[this.nowindex]
+      }
+    });
+  </script>
+</body>
+
+</html>
+
